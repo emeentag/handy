@@ -4,9 +4,9 @@
  * Desc   : An event-handler system;
  */
 
-package fsm.data;
+package handy.data;
 
-import fsm.view.IView;
+import handy.view.IView;
 
 public class HandyData {
 

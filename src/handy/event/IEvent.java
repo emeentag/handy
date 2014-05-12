@@ -4,9 +4,9 @@
  * Desc   : An event-handler system;
  */
 
-package fsm.event;
+package handy.event;
 
-import fsm.data.EventData;
+import handy.data.EventData;
 
 public interface IEvent {
 

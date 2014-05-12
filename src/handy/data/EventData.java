@@ -4,7 +4,7 @@
  * Desc   : An event-handler system;
  */
 
-package fsm.data;
+package handy.data;
 
 import java.awt.List;
 import java.util.ArrayList;

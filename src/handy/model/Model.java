@@ -4,11 +4,11 @@
  * Desc   : An event-handler system;
  */
 
-package fsm.model;
+package handy.model;
 
-import fsm.Handy;
-import fsm.event.IEvent;
-import fsm.view.IView;
+import handy.Handy;
+import handy.event.IEvent;
+import handy.view.IView;
 
 public class Model {
 

@@ -4,13 +4,13 @@
  * Desc   : An event-handler system;
  */
 
-package fsm;
+package handy;
+
+import handy.data.HandyData;
+import handy.event.IEvent;
+import handy.view.IView;
 
 import java.util.ArrayList;
-
-import fsm.data.HandyData;
-import fsm.event.IEvent;
-import fsm.view.IView;
 
 public class Handy {
 
