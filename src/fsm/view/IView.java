@@ -1,9 +1,15 @@
+/*
+ * Project: Handy
+ * Author : Serdar SIMSEK - ssimsek@outlook.com
+ * Desc   : An event-handler system;
+ */
+
 package fsm.view;
 
-import fsm.event.Event;
+import fsm.event.IEvent;
 
 public interface IView {
-	
-	public void execute(Event event);
+
+	public void execute(IEvent event);
 
 }

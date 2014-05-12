@@ -1,27 +1,31 @@
+/*
+ * Project: Handy
+ * Author : Serdar SIMSEK - ssimsek@outlook.com
+ * Desc   : An event-handler system;
+ */
+
 package fsm.model;
 
-import fsm.FSM;
-import fsm.event.Event;
+import fsm.Handy;
+import fsm.event.IEvent;
 import fsm.view.IView;
 
 public class Model {
-	
-	String data;
 
-	public Model(){
+	public Model() {
 
 	}
-	
-	public void raiseEvent(Event event){		
-		FSM.getInstance(this).invokeEventHandler(event);
+
+	public void raiseEvent(IEvent event) {
+		Handy.getInstance().invokeEventHandler(event);
 	}
 
-	public void addEventHandler(int eid, IView view){
-		FSM.getInstance(this).registerForEvent(eid, view);
+	public void addEventHandler(int eid, IView view) {
+		Handy.getInstance().registerToEvent(eid, view);
 	}
 
-	public void removeEventHandler(int eid, IView view){
-		FSM.getInstance(this).deregisterForEvent(eid, view);
+	public void removeEventHandler(int eid, IView view) {
+		Handy.getInstance().deregisterFromEvent(eid, view);
 	}
-	
+
 }
