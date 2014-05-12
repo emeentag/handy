@@ -20,7 +20,15 @@ public class Handy {
 
 	}
 
-	private void registerToEvent(int eid, IEventHandler handler) {
+	private void registerToEvent(int eid, IEventHandler handler)
+			throws Exception {
+		for (int i = 0; i < eventList.size(); ++i) {
+			if (eventList.get(i).getEid() == eid
+					&& handler.equals(eventList.get(i).getHandler())) {
+				throw new Exception(
+						"You can't bind the same Event more than once!");
+			}
+		}
 		HandyData data = new HandyData();
 		data.setEid(eid);
 		data.setHandler(handler);
@@ -48,7 +56,8 @@ public class Handy {
 		invokeEventHandler(event);
 	}
 
-	public void addEventHandler(int eid, IEventHandler handler) {
+	public void addEventHandler(int eid, IEventHandler handler)
+			throws Exception {
 		registerToEvent(eid, handler);
 	}
 
