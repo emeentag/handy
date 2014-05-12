@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class EventData {
-	private static EventData instance;
 	private boolean bdata;
 	private String sdata;
 	private byte bytedata;
@@ -25,14 +24,6 @@ public class EventData {
 	private ArrayList<?> aldata;
 	private List listdata;
 	private Object objectData;
-
-	public static EventData getInstance() {
-		if (instance != null) {
-			return instance;
-		} else {
-			return instance = new EventData();
-		}
-	}
 
 	public Object getObjectData() {
 		return objectData;
