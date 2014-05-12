@@ -10,8 +10,6 @@ import handy.data.EventData;
 
 public interface IEvent {
 
-	public void execute(IEvent event);
-
 	public int getEid();
 
 	public void setEid(int eid);
