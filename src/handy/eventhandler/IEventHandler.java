@@ -4,11 +4,11 @@
  * Desc   : An event-handler system;
  */
 
-package handy.view;
+package handy.eventhandler;
 
 import handy.event.Event;
 
-public interface IView {
+public interface IEventHandler {
 
 	public void execute(Event event);
 

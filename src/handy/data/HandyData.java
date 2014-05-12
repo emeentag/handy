@@ -6,12 +6,12 @@
 
 package handy.data;
 
-import handy.view.IView;
+import handy.eventhandler.IEventHandler;
 
 public class HandyData {
 
 	private int eid;
-	private IView view;
+	private IEventHandler handler;
 
 	public HandyData() {
 
@@ -25,12 +25,12 @@ public class HandyData {
 		this.eid = eid;
 	}
 
-	public IView getView() {
-		return view;
+	public IEventHandler getHandler() {
+		return handler;
 	}
 
-	public void setView(IView view) {
-		this.view = view;
+	public void setHandler(IEventHandler handler) {
+		this.handler = handler;
 	}
 
 }

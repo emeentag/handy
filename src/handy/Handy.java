@@ -8,47 +8,52 @@ package handy;
 
 import handy.data.HandyData;
 import handy.event.Event;
-import handy.view.IView;
+import handy.eventhandler.IEventHandler;
 
 import java.util.ArrayList;
 
 public class Handy {
 
-	private static Handy instance;
 	private ArrayList<HandyData> eventList = new ArrayList<HandyData>();
 
 	public Handy() {
+
 	}
 
-	public static Handy getInstance() {
-		if (instance != null) {
-			return instance;
-		}
-		return instance = new Handy();
-	}
-
-	public void registerToEvent(int eid, IView view) {
+	private void registerToEvent(int eid, IEventHandler handler) {
 		HandyData data = new HandyData();
 		data.setEid(eid);
-		data.setView(view);
+		data.setHandler(handler);
 		eventList.add(data);
 	}
 
-	public void deregisterFromEvent(int eid, IView view) {
+	private void deregisterFromEvent(int eid, IEventHandler handler) {
 		for (int i = 0; i < eventList.size(); ++i) {
 			if (eventList.get(i).getEid() == eid
-					&& view.equals(eventList.get(i).getView())) {
+					&& handler.equals(eventList.get(i).getHandler())) {
 				eventList.remove(i);
 			}
 		}
 	}
 
-	public void invokeEventHandler(Event event) {
+	private void invokeEventHandler(Event event) {
 		for (int i = 0; i < eventList.size(); ++i) {
 			if (eventList.get(i).getEid() == event.getEid()) {
-				eventList.get(i).getView().execute(event);
+				eventList.get(i).getHandler().execute(event);
 			}
 		}
+	}
+
+	public void raiseEvent(Event event) {
+		invokeEventHandler(event);
+	}
+
+	public void addEventHandler(int eid, IEventHandler handler) {
+		registerToEvent(eid, handler);
+	}
+
+	public void removeEventHandler(int eid, IEventHandler handler) {
+		deregisterFromEvent(eid, handler);
 	}
 
 }
