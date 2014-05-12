@@ -7,7 +7,7 @@
 package handy.model;
 
 import handy.Handy;
-import handy.event.IEvent;
+import handy.event.Event;
 import handy.view.IView;
 
 public class Model {
@@ -16,7 +16,7 @@ public class Model {
 
 	}
 
-	public void raiseEvent(IEvent event) {
+	public void raiseEvent(Event event) {
 		Handy.getInstance().invokeEventHandler(event);
 	}
 

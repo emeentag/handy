@@ -6,10 +6,10 @@
 
 package handy.view;
 
-import handy.event.IEvent;
+import handy.event.Event;
 
 public interface IView {
 
-	public void execute(IEvent event);
+	public void execute(Event event);
 
 }

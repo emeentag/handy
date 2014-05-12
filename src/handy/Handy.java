@@ -7,7 +7,7 @@
 package handy;
 
 import handy.data.HandyData;
-import handy.event.IEvent;
+import handy.event.Event;
 import handy.view.IView;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class Handy {
 		}
 	}
 
-	public void invokeEventHandler(IEvent event) {
+	public void invokeEventHandler(Event event) {
 		for (int i = 0; i < eventList.size(); ++i) {
 			if (eventList.get(i).getEid() == event.getEid()) {
 				eventList.get(i).getView().execute(event);
