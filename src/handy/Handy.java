@@ -22,26 +22,31 @@ public class Handy {
 
 	private void registerToEvent(int eid, IEventHandler handler)
 			throws Exception {
-		for (int i = 0; i < eventList.size(); ++i) {
-			if (eventList.get(i).getEid() == eid
-					&& handler.equals(eventList.get(i).getHandler())) {
-				throw new Exception(
-						"You can't bind the same Event more than once!");
-			}
+		int i = isHandlerBindedToEvent(eid, handler);
+		if (i >= 0) {
+			throw new Exception(
+					"This handler already added to this event: "
+							+ eid
+							+ " before!");
+		} else {
+			HandyData data = new HandyData();
+			data.setEid(eid);
+			data.setHandler(handler);
+			eventList.add(data);
 		}
-		HandyData data = new HandyData();
-		data.setEid(eid);
-		data.setHandler(handler);
-		eventList.add(data);
 	}
 
-	private void deregisterFromEvent(int eid, IEventHandler handler) {
-		for (int i = 0; i < eventList.size(); ++i) {
-			if (eventList.get(i).getEid() == eid
-					&& handler.equals(eventList.get(i).getHandler())) {
-				eventList.remove(i);
-			}
+	private void deregisterFromEvent(int eid, IEventHandler handler)
+			throws Exception {
+		int i = isHandlerBindedToEvent(eid, handler);
+		if (i >= 0) {
+			// This handler is binded this event so let's remove handler.
+			eventList.remove(i);
+			return;
 		}
+
+		throw new Exception("This handler wasn't added to this event: " + eid
+				+ " before! \nIt needs to be added first to remove.");
 	}
 
 	private void invokeEventHandler(Event event) {
@@ -50,6 +55,16 @@ public class Handy {
 				eventList.get(i).getHandler().execute(event);
 			}
 		}
+	}
+
+	private int isHandlerBindedToEvent(int eid, IEventHandler handler) {
+		for (int i = 0; i < eventList.size(); ++i) {
+			if (eventList.get(i).getEid() == eid
+					&& handler.equals(eventList.get(i).getHandler())) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	public void raiseEvent(Event event) {
@@ -61,7 +76,8 @@ public class Handy {
 		registerToEvent(eid, handler);
 	}
 
-	public void removeEventHandler(int eid, IEventHandler handler) {
+	public void removeEventHandler(int eid, IEventHandler handler)
+			throws Exception {
 		deregisterFromEvent(eid, handler);
 	}
 
