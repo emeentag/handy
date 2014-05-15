@@ -8,9 +8,18 @@ package handy.event;
 
 import handy.data.EventData;
 
-public abstract class Event {
+public class Event {
 	private int eid;
 	private EventData data;
+
+	public Event() {
+		
+	}
+
+	public Event(int eid, EventData data) {
+		setEid(eid);
+		setData(data);
+	}
 
 	public int getEid() {
 		return eid;
