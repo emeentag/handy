@@ -48,7 +48,7 @@ public class Handy {
 		ArrayList<HandyData> eventHandlerList = decideEventHandlerList(eid);
 
 		// Need to remove eventList from the eventGroup. Because we should not
-		// add and empty evenList to the eventGroup.
+		// add and empty evenList to the eventGroup at this level.
 		if (eventHandlerList.isEmpty()) {
 			eventList.remove(eventHandlerList);
 			throw new Exception(
@@ -90,7 +90,7 @@ public class Handy {
 				.getEid());
 
 		// Need to remove eventList from the eventGroup. Because we should not
-		// add and empty evenList to the eventGroup.
+		// add and empty evenList to the eventGroup at this level.
 		if (eventHandlerList.isEmpty()) {
 			eventList.remove(eventHandlerList);
 			throw new Exception(
@@ -98,7 +98,7 @@ public class Handy {
 							+ event.getEid()
 							+ " \nIt is not allowed to raise an event which is not listened by any handler.");
 		}
-		
+
 		for (int i = 0; i < eventHandlerList.size(); ++i) {
 			eventHandlerList.get(i).getHandler().execute(event);
 		}
@@ -156,6 +156,32 @@ public class Handy {
 
 			e.printStackTrace();
 		}
+	}
+
+	public StringBuilder report() {
+		ArrayList<HandyData> eventHandlerList;
+		StringBuilder sb = new StringBuilder();
+		sb.append("[Begin Handy Report]\n");
+		if (eventList.isEmpty()) {
+			sb.append("\tHandy is empty.");
+		} else {
+			for (int i = 0; i < eventList.size(); i++) {
+				eventHandlerList = eventList.get(i);
+				sb.append("\tBegin Event: " + eventHandlerList.get(0).getEid()
+						+ " Handlers Report\n");
+				for (int j = 0; j < eventHandlerList.size(); j++) {
+					sb.append("\t\t"
+							+ j
+							+ ": "
+							+ eventHandlerList.get(j).getHandler().getClass()
+									.getSimpleName() + "\n");
+				}
+				sb.append("\tEnd of Event: " + eventHandlerList.get(0).getEid()
+						+ " Handlers Report\n\n");
+			}
+		}
+		sb.append("[End Handy Report]\n");
+		return sb;
 	}
 
 }
