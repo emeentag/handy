@@ -6,10 +6,11 @@
 
 package handy.eventhandler;
 
+import handy.Handy;
 import handy.event.Event;
 
 public interface IEventHandler {
 
-	public void execute(Event event);
+	public void execute(Handy owner, Event event);
 
 }

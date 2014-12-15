@@ -35,6 +35,7 @@ public class Handy {
 			HandyData data = new HandyData();
 			data.setEid(eid);
 			data.setHandler(handler);
+			data.setOwner(this);
 			eventHandlerList.add(data);
 		}
 	}
@@ -100,7 +101,8 @@ public class Handy {
 		}
 
 		for (int i = 0; i < eventHandlerList.size(); ++i) {
-			eventHandlerList.get(i).getHandler().execute(event);
+			eventHandlerList.get(i).getHandler()
+					.execute(eventHandlerList.get(i).getOwner(), event);
 		}
 	}
 
@@ -161,26 +163,22 @@ public class Handy {
 	public StringBuilder report() {
 		ArrayList<HandyData> eventHandlerList;
 		StringBuilder sb = new StringBuilder();
-		sb.append("[Begin Handy Report]\n");
+		sb.append("[Handy Report]\n\t[Begin]\n");
 		if (eventList.isEmpty()) {
 			sb.append("\tHandy is empty.");
 		} else {
 			for (int i = 0; i < eventList.size(); i++) {
 				eventHandlerList = eventList.get(i);
-				sb.append("\tBegin Event: " + eventHandlerList.get(0).getEid()
-						+ " Handlers Report\n");
 				for (int j = 0; j < eventHandlerList.size(); j++) {
 					sb.append("\t\t"
-							+ j
-							+ ": "
 							+ eventHandlerList.get(j).getHandler().getClass()
-									.getSimpleName() + "\n");
+									.getSimpleName()
+							+ " linked to Event (id): "
+							+ eventHandlerList.get(0).getEid() + "\n");
 				}
-				sb.append("\tEnd of Event: " + eventHandlerList.get(0).getEid()
-						+ " Handlers Report\n\n");
 			}
 		}
-		sb.append("[End Handy Report]\n");
+		sb.append("\t[End]\n[Handy Report]\n");
 		return sb;
 	}
 
