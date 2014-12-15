@@ -1,15 +1,16 @@
-package fsm.data;
+/*
+ * Project: Handy
+ * Author : Serdar SIMSEK - ssimsek@outlook.com
+ * Desc   : An event-handler system;
+ */
+
+package handy.data;
 
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import fsm.model.Model;
-
 public class EventData {
-	private Model model;
-	private static EventData instance;
-
 	private boolean bdata;
 	private String sdata;
 	private byte bytedata;
@@ -22,16 +23,16 @@ public class EventData {
 	private Vector<?> vdata;
 	private ArrayList<?> aldata;
 	private List listdata;
+	private Object objectData;
 
-
-	public static EventData getInstance(Model model) {
-		if (instance != null) {
-			return instance;
-		} else {
-			return instance = new EventData(model);
-		}
+	public Object getObjectData() {
+		return objectData;
 	}
-	
+
+	public void setObjectData(Object objectData) {
+		this.objectData = objectData;
+	}
+
 	public boolean isBdata() {
 		return bdata;
 	}
@@ -128,8 +129,7 @@ public class EventData {
 		this.listdata = listdata;
 	}
 
-	public EventData(Model model) {
-		this.model = model;
+	public EventData() {
 	}
-	
+
 }
