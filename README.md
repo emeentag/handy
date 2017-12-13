@@ -1,4 +1,6 @@
-### What is this repository for? ###
+# About Project #
+
+## What is this repository for? ##
 
 * An event-handler framework for Java applications.
 * Create your Handy object, bind handlers to it, and raise event when ever you need them.
